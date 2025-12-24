@@ -1,0 +1,15 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+}
+
+.loader-wrapper {
+  background-color: red;
+}
+
+.loader-wrapper--spinner {
+  background-color: aqua;
+}

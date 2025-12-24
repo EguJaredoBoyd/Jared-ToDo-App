@@ -1,0 +1,20 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+}
+
+.loader-wrapper {
+  background-color: red;
+  text-align: center;
+}
+
+.loader-wrapper--spinner {
+  background-color: aqua;
+}
+
+p {
+  background-color: chartreuse;
+}

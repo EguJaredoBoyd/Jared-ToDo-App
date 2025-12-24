@@ -1,0 +1,15 @@
+body {
+  background-color: blue;
+}
+
+.loader-wrapper {
+  background-color: red;
+}
+
+.loader-wrapper--spinner {
+  background-color: aqua;
+}
+
+p {
+  background-color: chartreuse;
+}

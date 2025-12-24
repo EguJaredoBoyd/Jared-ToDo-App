@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="./js/to-do.j" defer></script>
+  </head>
+
+  <body>
+    <div class="body__todo-wrapper">
+      <header>
+        <button><i class="ri-sun-line"></i></button>
+      </header>
+
+      <main>
+        <section class="todo-history">
+          <div>
+            <h3>To-Do History</h3>
+          </div>
+          <div class="todo-history__icon">
+            <div>
+              <input type="text" placeholder="Search To-dos " />
+              <button id="cancel-search-button">
+                <i class="ri-close-line"></i>
+              </button>
+            </div>
+            <button id="search-button"><i class="ri-search-line"></i></button>
+          </div>
+          <div>
+            <ul>
+              <div class="ul__list">
+                <li>Eat my food</li>
+                <button>
+                  <input type="checkbox" name="checkbox" id="checkbox" />
+                </button>
+                <button><i class="ri-edit-line"></i></button>
+                <button><i class="ri-delete-bin-line"></i></button>
+              </div>
+              <div class="ul__list">
+                <li>Eat my food and sleep and play all night</li>
+                <button>
+                  <input type="checkbox" name="checkbox" id="checkbox" />
+                </button>
+                <button><i class="ri-edit-line"></i></button>
+                <button><i class="ri-delete-bin-line"></i></button>
+              </div>
+              <div class="ul__list">
+                <li>Eat my food</li>
+                <button>
+                  <input type="checkbox" name="checkbox" id="checkbox" />
+                </button>
+                <button>
+                  <i class="ri-edit-line"></i>
+                </button>
+                <button>
+                  <i class="ri-delete-bin-line"></i>
+                </button>
+              </div>
+            </ul>
+          </div>
+        </section>
+
+        <section class="todo-title">
+          <div>
+            <h2>Just Do It...</h2>
+          </div>
+        </section>
+
+        <section class="todo-add-task">
+          <div class="To-Do">
+            <input type="text" id="to-do" placeholder="Write a To-do" />
+            <button id="add-task">Add</button>
+
+            <ol id="task-show" class="task-list">
+              <div class="ol__list">
+                <li>Eat my food</li>
+                <button>
+                  <input type="checkbox" name="checkbox" id="checkbox" />
+                </button>
+                <button><i class="ri-edit-line"></i></button>
+                <button><i class="ri-delete-bin-line"></i></button>
+              </div>
+              <div class="ol__list">
+                <li>Eat my food</li>
+                <button>
+                  <input type="checkbox" name="checkbox" id="checkbox" />
+                </button>
+                <button><i class="ri-edit-line"></i></button>
+                <button><i class="ri-delete-bin-line"></i></button>
+              </div>
+              <div class="ol__list">
+                <li>Eat my food</li>
+                <button>
+                  <input type="checkbox" name="checkbox" id="checkbox" />
+                </button>
+                <button><i class="ri-edit-line"></i></button>
+                <button><i class="ri-delete-bin-line"></i></button>
+              </div>
+            </ol>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div>Jared To-Do App</div>
+      </footer>
+    </div>
+  </body>
+</html>

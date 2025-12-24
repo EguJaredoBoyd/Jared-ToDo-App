@@ -1,0 +1,103 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* My project colours to use */
+  --primary-color: #21295c;
+  --secondary-color: #ffffff;
+
+  /* My font size to use */
+  --font-base: 16px;
+
+  /* My spaces to use */
+}
+
+html {
+  font-size: var(--font-base);
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  background-color: red;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.body__todo-wrapper header {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  background-color: blue;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  gap: 2rem;
+  margin: 2rem 0;
+  width: 100vw;
+  max-width: 100vw;
+}
+
+.todo-history {
+  width: 80vw;
+  position: relative;
+  background-color: orange;
+}
+
+.todo-history__icon {
+  display: flex;
+  background-color: #21295c;
+}
+
+.todo-history__icon div input {
+  width: 70vw;
+  padding: 0.5rem;
+}
+
+#cancel-search-button {
+  position: relative;
+  color: aqua;
+}
+
+.todo-history__icon div #search-button {
+  padding: 0.5rem;
+}
+
+.ul__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  width: 70vw;
+  background-color: pink;
+}
+
+.todo-title {
+  background-color: purple;
+}
+
+.todo-add-task {
+  width: 80vw;
+  background-color: aqua;
+}
+
+.task-list {
+  background-color: chartreuse;
+}
+
+.ol__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  background-color: crimson;
+}

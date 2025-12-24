@@ -1,0 +1,39 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* My project colours to use */
+  --primary-color: #21295c;
+  --secondary-color: #ffffff;
+
+  /* My font size to use */
+  --font-base: 16px;
+
+  /* My spaces to use */
+}
+
+html {
+  font-size: var(--font-base);
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  background-color: red;
+}
+
+.body__todo-wrapper header {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  background-color: blue;
+}
+
+main {
+  display: flex;
+  background-color: green;
+}

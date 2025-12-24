@@ -1,0 +1,36 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+}
+
+.loader-wrapper {
+  background-color: red;
+  text-align: center;
+}
+
+.loader-wrapper--spinner {
+  background-color: aqua;
+  width: 40px;
+  height: 40px;
+  border: 4px solid black;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  from {
+    transform: none;
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+p {
+  background-color: chartreuse;
+}
