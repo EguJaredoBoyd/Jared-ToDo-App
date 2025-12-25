@@ -169,7 +169,6 @@ main {
   font-family: "Quicksand", sans-serif;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
-  color: var(--primary-color);
 }
 
 .To-Do__create input[type="text"]::placeholder {

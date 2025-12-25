@@ -51,31 +51,6 @@ button {
   color: var(--secondary-color);
 }
 
-input[type="checkbox"] {
-  appearance: none;
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  background-color: white;
-}
-
-input[type="checkbox"]::before {
-  content: "";
-  position: absolute;
-  font-size: 0.7rem;
-}
-
-input[type="checkbox"]:checked::before {
-  content: "\EB7B";
-  font-family: remixicon;
-  position: absolute;
-  font-size: 0.7rem;
-  font-weight: bolder;
-  color: var(--primary-color);
-}
-
 body.light-theme button {
   color: var(--light-secondary-color);
 }
@@ -123,7 +98,6 @@ main {
   outline: none;
   padding: 0.5rem;
   font-family: "Quicksand", sans-serif;
-  color: var(--primary-color);
 }
 
 #cancel-search-button {
@@ -169,7 +143,6 @@ main {
   font-family: "Quicksand", sans-serif;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
-  color: var(--primary-color);
 }
 
 .To-Do__create input[type="text"]::placeholder {
@@ -186,8 +159,7 @@ main {
 }
 
 body.light-theme .To-Do__create button {
-  background-color: #1c6cbb;
-  color: white;
+  background-color: #064e96;
 }
 
 .ol__list {

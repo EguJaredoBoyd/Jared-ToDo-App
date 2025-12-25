@@ -12,7 +12,7 @@
   --secondary-color: #ffffff;
 
   /* Color for light background */
-  --light-primary-color: #83bdf7;
+  --light-primary-color: var(--secondary-color);
   --light-secondary-color: var(--primary-color);
 
   /* My font size to use */
@@ -49,35 +49,6 @@ button {
   border: none;
   background: none;
   color: var(--secondary-color);
-}
-
-input[type="checkbox"] {
-  appearance: none;
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  background-color: white;
-}
-
-input[type="checkbox"]::before {
-  content: "";
-  position: absolute;
-  font-size: 0.7rem;
-}
-
-input[type="checkbox"]:checked::before {
-  content: "\EB7B";
-  font-family: remixicon;
-  position: absolute;
-  font-size: 0.7rem;
-  font-weight: bolder;
-  color: var(--primary-color);
-}
-
-body.light-theme button {
-  color: var(--light-secondary-color);
 }
 
 .body__todo-wrapper header {
@@ -123,7 +94,6 @@ main {
   outline: none;
   padding: 0.5rem;
   font-family: "Quicksand", sans-serif;
-  color: var(--primary-color);
 }
 
 #cancel-search-button {
@@ -169,7 +139,6 @@ main {
   font-family: "Quicksand", sans-serif;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
-  color: var(--primary-color);
 }
 
 .To-Do__create input[type="text"]::placeholder {
@@ -183,11 +152,6 @@ main {
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   background-color: #010a3f;
-}
-
-body.light-theme .To-Do__create button {
-  background-color: #1c6cbb;
-  color: white;
 }
 
 .ol__list {
