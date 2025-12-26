@@ -117,14 +117,6 @@ function buttonAdd() {
   });
 }
 
-//Use "ENTER" key as an add todo button alternative
-toDoInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    logArray();
-  }
-});
-
 buttonAdd();
 deleteTaskArray();
 completeTask();

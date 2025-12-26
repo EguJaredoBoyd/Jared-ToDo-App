@@ -17,13 +17,11 @@ function renderTasks() {
   for (let i = 0; i < toDoArray.length; i++) {
     showTask.innerHTML += `
       <div class="ol__list">
-        <li class="${toDoArray[i].completed ? "done" : ""}">${
-      toDoArray[i].text
-    }</li>
+        <li>${toDoArray[i].text}</li>
         <button>
-          <input type="checkbox" name="checkbox" class="completed-task" data-index="${i}" ${
-      toDoArray[i].completed ? "checked" : ""
-    }/>
+          <input type="checkbox" name="checkbox"  class="${
+            toDoArray[i].completed ? "checked" : ""
+          }" data-index="${i}" class="completed-task"/>
         </button>
         <button><i class="ri-edit-line"></i></button>
         <button class="delete-task" data-index="${i}"><i class="ri-delete-bin-line"></i></button>
@@ -101,9 +99,9 @@ function completeTask() {
     }
 
     //CHECKMARK COMPLETION
-    const completeIndex = e.target.dataset.index;
+    const completeIndex = completedButton.dataset.index;
 
-    toDoArray[completeIndex].completed = e.target.checked;
+    buttonChecked = toDoArray[completeIndex].completed = e.target.checked;
 
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
     renderTasks();
@@ -116,14 +114,6 @@ function buttonAdd() {
     logArray();
   });
 }
-
-//Use "ENTER" key as an add todo button alternative
-toDoInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    logArray();
-  }
-});
 
 buttonAdd();
 deleteTaskArray();

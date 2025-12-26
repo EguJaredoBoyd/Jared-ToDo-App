@@ -15,9 +15,6 @@
   --light-primary-color: #83bdf7;
   --light-secondary-color: var(--primary-color);
 
-  /* Overlay background color */
-  --overlay-background: var(--primary-color);
-
   /* My font size to use */
   --font-base: 16px;
 
@@ -40,8 +37,6 @@ body {
 body.light-theme {
   background-color: var(--light-primary-color);
   color: var(--light-secondary-color);
-  /* Overlay background color */
-  --overlay-background: var(--light-primary-color);
 }
 
 h2,
@@ -118,7 +113,6 @@ main {
   pointer-events: none;
   transform: translateY(-100px);
   transition: all 2s ease;
-  z-index: 999;
 }
 
 .todo-history.show-menu {
@@ -126,7 +120,6 @@ main {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-  background-color: var(--overlay-background);
 }
 
 .todo-history div h3 {

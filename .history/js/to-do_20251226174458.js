@@ -17,13 +17,9 @@ function renderTasks() {
   for (let i = 0; i < toDoArray.length; i++) {
     showTask.innerHTML += `
       <div class="ol__list">
-        <li class="${toDoArray[i].completed ? "done" : ""}">${
-      toDoArray[i].text
-    }</li>
+        <li>${toDoArray[i].text}</li>
         <button>
-          <input type="checkbox" name="checkbox" class="completed-task" data-index="${i}" ${
-      toDoArray[i].completed ? "checked" : ""
-    }/>
+          <input type="checkbox" name="checkbox" id="checkbox" />
         </button>
         <button><i class="ri-edit-line"></i></button>
         <button class="delete-task" data-index="${i}"><i class="ri-delete-bin-line"></i></button>
@@ -80,30 +76,21 @@ function deleteTaskArray() {
     if (!deleteButton) {
       return;
     }
-
-    //DELETE TODO
     const index = Number(deleteButton.dataset.index);
     toDoArray.splice(index, 1);
 
-    localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
-    renderTasks();
-  });
-}
-
-function completeTask() {
-  showTask.addEventListener("click", (e) => {
-    //Target the checkbox button
-    const completedButton = e.target.classList.contains("completed-task");
-
-    //Check whether the user clicks the checkbox button to start action
-    if (!completedButton) {
-      return;
+    //UPDATE (Complete)
+    if (e.target.classList.contains("complete-task")) {
+      toDoArray[index].completed = !toDoArray[index].completed;
     }
 
-    //CHECKMARK COMPLETION
-    const completeIndex = e.target.dataset.index;
-
-    toDoArray[completeIndex].completed = e.target.checked;
+    //UPDATE (Edit)
+    if (e.target.classList.contains("edit-task")) {
+      let newText = prompt("Edit task:", toDoArray[index].text);
+      if (newText && newText.trim() !== "") {
+        toDoArray[index].text = newText.trim();
+      }
+    }
 
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
     renderTasks();
@@ -117,17 +104,8 @@ function buttonAdd() {
   });
 }
 
-//Use "ENTER" key as an add todo button alternative
-toDoInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    logArray();
-  }
-});
-
 buttonAdd();
 deleteTaskArray();
-completeTask();
 
 // SEARCH TODO FUNCTION
 

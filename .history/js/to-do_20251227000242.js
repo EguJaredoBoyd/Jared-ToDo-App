@@ -103,7 +103,7 @@ function completeTask() {
     //CHECKMARK COMPLETION
     const completeIndex = e.target.dataset.index;
 
-    toDoArray[completeIndex].completed = e.target.checked;
+    buttonChecked = toDoArray[completeIndex].completed = e.target.checked;
 
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
     renderTasks();
@@ -116,14 +116,6 @@ function buttonAdd() {
     logArray();
   });
 }
-
-//Use "ENTER" key as an add todo button alternative
-toDoInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    logArray();
-  }
-});
 
 buttonAdd();
 deleteTaskArray();

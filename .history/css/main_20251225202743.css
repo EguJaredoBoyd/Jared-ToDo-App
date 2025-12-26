@@ -118,7 +118,6 @@ main {
   pointer-events: none;
   transform: translateY(-100px);
   transition: all 2s ease;
-  z-index: 999;
 }
 
 .todo-history.show-menu {

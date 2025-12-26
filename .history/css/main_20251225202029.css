@@ -38,7 +38,6 @@ body {
 }
 
 body.light-theme {
-  background-color: var(--light-primary-color);
   color: var(--light-secondary-color);
   /* Overlay background color */
   --overlay-background: var(--light-primary-color);

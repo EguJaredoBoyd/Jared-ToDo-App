@@ -119,6 +119,7 @@ main {
   transform: translateY(-100px);
   transition: all 2s ease;
   z-index: 999;
+  background-color: var(--overlay-background);
 }
 
 .todo-history.show-menu {
@@ -126,7 +127,6 @@ main {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-  background-color: var(--overlay-background);
 }
 
 .todo-history div h3 {
