@@ -46,7 +46,6 @@ body.light-theme {
 
 body.no-scroll {
   overflow: hidden;
-  position: fixed;
 }
 
 h2,
@@ -121,13 +120,14 @@ main {
   visibility: hidden;
   width: 100vw;
   height: 100vh;
-  top: 3rem;
+  top: 2rem;
   position: fixed;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-100px);
   transition: all 2s ease;
   z-index: 999;
+  background-color: red;
 }
 
 .todo-history.show-menu {
@@ -135,7 +135,7 @@ main {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-  background-color: var(--overlay-background);
+  /* background-color: var(--overlay-background); */
 }
 
 .todo-history div h3 {

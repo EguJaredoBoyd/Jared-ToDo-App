@@ -135,7 +135,7 @@ main {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-  background-color: var(--overlay-background);
+  /* background-color: var(--overlay-background); */
 }
 
 .todo-history div h3 {

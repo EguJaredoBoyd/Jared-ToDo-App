@@ -44,11 +44,6 @@ body.light-theme {
   --overlay-background: var(--light-primary-color);
 }
 
-body.no-scroll {
-  overflow: hidden;
-  position: fixed;
-}
-
 h2,
 h3,
 h6 {
@@ -117,17 +112,17 @@ main {
 .todo-history {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
   visibility: hidden;
   width: 100vw;
   height: 100vh;
-  top: 3rem;
   position: fixed;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-100px);
   transition: all 2s ease;
   z-index: 999;
+  background-color: red;
 }
 
 .todo-history.show-menu {
@@ -135,7 +130,7 @@ main {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-  background-color: var(--overlay-background);
+  /* background-color: var(--overlay-background); */
 }
 
 .todo-history div h3 {
@@ -207,8 +202,8 @@ main {
 }
 
 .To-Do__create button {
-  margin-left: -1rem;
-  padding: 0.55rem 0.8rem;
+  margin-left: -0.5rem;
+  padding: 0.52rem 0.8rem;
   font-family: "Montserrat", sans-serif;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -231,10 +226,6 @@ body.light-theme .To-Do__create button {
 .ol__list li {
   width: 50vw;
   max-width: 50vw;
-}
-
-.ol__list li h6 {
-  font-weight: 300;
 }
 
 footer div {

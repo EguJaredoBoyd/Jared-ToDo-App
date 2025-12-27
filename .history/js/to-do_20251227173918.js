@@ -30,8 +30,6 @@ function renderTasks() {
         <button class="delete-task" data-index="${i}"><i class="ri-delete-bin-line"></i></button>
       </div>
       `;
-
-    console.log(`${toDoArray[i].date}`);
   }
 }
 

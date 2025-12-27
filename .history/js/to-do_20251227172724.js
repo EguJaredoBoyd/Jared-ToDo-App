@@ -3,11 +3,16 @@ let toDoInput = document.querySelector("#to-do");
 let addTask = document.getElementById("add-task");
 let showTask = document.querySelector("#task-show");
 
+//Target the h6 button for the date output
+let dateOutput = document.getElementById("date-output");
+
 //Store my to-dos (if there is any) inside a variable
 let storedToDoArray = JSON.parse(localStorage.getItem("addTaskToArray"));
 
 //Initialize a stored or an empty To-Do array
 let toDoArray = storedToDoArray || [];
+
+dateOutputFunction();
 
 //Function to render tasks
 function renderTasks() {
@@ -19,7 +24,7 @@ function renderTasks() {
       <div class="ol__list">
         <li class="${toDoArray[i].completed ? "done" : ""}">
           <h4>${toDoArray[i].text}</h4>
-          <h6>${toDoArray[i].date}</h6>
+          <h6 id="date-output"></h6>
         </li>
         <button>
           <input type="checkbox" name="checkbox" class="completed-task" data-index="${i}" ${
@@ -30,8 +35,6 @@ function renderTasks() {
         <button class="delete-task" data-index="${i}"><i class="ri-delete-bin-line"></i></button>
       </div>
       `;
-
-    console.log(`${toDoArray[i].date}`);
   }
 }
 
@@ -64,7 +67,6 @@ function logArray() {
   toDoArray.push({
     text: newTask,
     completed: false,
-    date: new Date().toLocaleDateString(),
   });
 
   //Save to local storage
@@ -132,6 +134,11 @@ toDoInput.addEventListener("keydown", (e) => {
 buttonAdd();
 deleteTaskArray();
 completeTask();
+
+//Date function
+function dateOutputFunction() {
+  dateOutput.textContent = new Date().toLocaleDateString();
+}
 
 // SEARCH TODO FUNCTION
 

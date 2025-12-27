@@ -44,11 +44,6 @@ body.light-theme {
   --overlay-background: var(--light-primary-color);
 }
 
-body.no-scroll {
-  overflow: hidden;
-  position: fixed;
-}
-
 h2,
 h3,
 h6 {
@@ -121,7 +116,6 @@ main {
   visibility: hidden;
   width: 100vw;
   height: 100vh;
-  top: 3rem;
   position: fixed;
   opacity: 0;
   pointer-events: none;
@@ -234,7 +228,7 @@ body.light-theme .To-Do__create button {
 }
 
 .ol__list li h6 {
-  font-weight: 300;
+  font-weight: 900;
 }
 
 footer div {

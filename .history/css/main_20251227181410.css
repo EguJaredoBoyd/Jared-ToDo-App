@@ -44,9 +44,9 @@ body.light-theme {
   --overlay-background: var(--light-primary-color);
 }
 
-body.no-scroll {
+.no-scroll {
   overflow: hidden;
-  position: fixed;
+  background-color: red;
 }
 
 h2,
@@ -121,7 +121,6 @@ main {
   visibility: hidden;
   width: 100vw;
   height: 100vh;
-  top: 3rem;
   position: fixed;
   opacity: 0;
   pointer-events: none;

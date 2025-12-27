@@ -35,6 +35,7 @@ body {
   max-height: 100vh;
   background-color: var(--primary-color);
   color: var(--secondary-color);
+  overflow: hidden;
 }
 
 body.light-theme {
@@ -46,7 +47,6 @@ body.light-theme {
 
 body.no-scroll {
   overflow: hidden;
-  position: fixed;
 }
 
 h2,
@@ -121,7 +121,6 @@ main {
   visibility: hidden;
   width: 100vw;
   height: 100vh;
-  top: 3rem;
   position: fixed;
   opacity: 0;
   pointer-events: none;

@@ -19,7 +19,7 @@ function renderTasks() {
       <div class="ol__list">
         <li class="${toDoArray[i].completed ? "done" : ""}">
           <h4>${toDoArray[i].text}</h4>
-          <h6>${toDoArray[i].date}</h6>
+          <h6></h6>
         </li>
         <button>
           <input type="checkbox" name="checkbox" class="completed-task" data-index="${i}" ${
@@ -30,8 +30,6 @@ function renderTasks() {
         <button class="delete-task" data-index="${i}"><i class="ri-delete-bin-line"></i></button>
       </div>
       `;
-
-    console.log(`${toDoArray[i].date}`);
   }
 }
 
@@ -64,7 +62,6 @@ function logArray() {
   toDoArray.push({
     text: newTask,
     completed: false,
-    date: new Date().toLocaleDateString(),
   });
 
   //Save to local storage
