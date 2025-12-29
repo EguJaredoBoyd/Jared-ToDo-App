@@ -25,9 +25,9 @@ function renderTasks(list = toDoArray) {
           <h6>${todo.date}</h6>
         </li>
         <button>
-          <input type="checkbox" name="checkbox" class="completed-task" data-id="${
-            todo.id
-          }" ${todo.completed ? "checked" : ""}/>
+          <input type="checkbox" name="checkbox" class="completed-task" data-index="${i}" ${
+      todo.completed ? "checked" : ""
+    }/>
         </button>
         <button class="edit-task" data-id=  "${
           todo.id
@@ -86,7 +86,7 @@ function logArray() {
 
 //Function to delete an input task
 function deleteTaskArray() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     //Target the delete button
     const deleteButton = e.target.closest(".delete-task");
 
@@ -117,13 +117,11 @@ function deleteTaskArray() {
 
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
+
 function completeTask() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     //Target the checkbox button
     const completedButton = e.target.classList.contains("completed-task");
 
@@ -135,7 +133,7 @@ function completeTask() {
     //CHECKMARK COMPLETION
     const taskId = Number(e.target.dataset.id);
     const index = toDoArray.findIndex((todo) => {
-      return todo.id === taskId;
+      todo.id === taskId;
     });
     if (index === -1) {
       return;
@@ -145,10 +143,7 @@ function completeTask() {
 
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
 
 //Add A Task
@@ -161,16 +156,16 @@ function buttonAdd() {
 
 //Edit a task
 function editTask() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     const editButton = e.target.closest(".edit-task");
 
     if (!editButton) {
       return;
     }
 
-    const taskId = Number(editButton.dataset.id);
+    const taskId = Number(editButton.dataset.index);
     const index = toDoArray.findIndex((todo) => {
-      return todo.id === taskId;
+      todo.id === taskId;
     });
     if (index === -1) {
       return;
@@ -190,10 +185,7 @@ function editTask() {
 
     //Re-render the new task list
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
 
 editTask();

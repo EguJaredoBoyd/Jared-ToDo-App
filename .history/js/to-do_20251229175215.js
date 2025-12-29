@@ -17,24 +17,19 @@ function renderTasks(list = toDoArray) {
   todoHistoryInput.innerHTML = "";
 
   for (let i = 0; i < list.length; i++) {
-    const todo = list[i];
     let html = `
       <div class="ol__list">
-        <li class="${todo.completed ? "done" : ""}">
-          <h4>${todo.text}</h4>
-          <h6>${todo.date}</h6>
+        <li class="${list[i].completed ? "done" : ""}">
+          <h4>${list[i].text}</h4>
+          <h6>${list[i].date}</h6>
         </li>
         <button>
-          <input type="checkbox" name="checkbox" class="completed-task" data-id="${
-            todo.id
-          }" ${todo.completed ? "checked" : ""}/>
+          <input type="checkbox" name="checkbox" class="completed-task" data-index="${i}" ${
+      list[i].completed ? "checked" : ""
+    }/>
         </button>
-        <button class="edit-task" data-id=  "${
-          todo.id
-        }"><i class="ri-edit-line"></i></button>
-        <button class="delete-task" data-id="${
-          todo.id
-        }"><i class="ri-delete-bin-line"></i></button>
+        <button class="edit-task" data-index=  "${i}"><i class="ri-edit-line"></i></button>
+        <button class="delete-task" data-index="${i}"><i class="ri-delete-bin-line"></i></button>
       </div>
       `;
 
@@ -86,7 +81,7 @@ function logArray() {
 
 //Function to delete an input task
 function deleteTaskArray() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     //Target the delete button
     const deleteButton = e.target.closest(".delete-task");
 
@@ -96,13 +91,7 @@ function deleteTaskArray() {
     }
 
     //DELETE TODO
-    const taskId = Number(deleteButton.dataset.id);
-    const index = toDoArray.findIndex((todo) => {
-      return todo.id === taskId;
-    });
-    if (index === -1) {
-      return;
-    }
+    const index = Number(deleteButton.dataset.index);
 
     //Ask User if they really want to delete
     const confirmDelete = confirm("Are you sure you want to delete this task?");
@@ -117,13 +106,11 @@ function deleteTaskArray() {
 
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
+
 function completeTask() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     //Target the checkbox button
     const completedButton = e.target.classList.contains("completed-task");
 
@@ -133,22 +120,13 @@ function completeTask() {
     }
 
     //CHECKMARK COMPLETION
-    const taskId = Number(e.target.dataset.id);
-    const index = toDoArray.findIndex((todo) => {
-      return todo.id === taskId;
-    });
-    if (index === -1) {
-      return;
-    }
+    const completeIndex = e.target.dataset.index;
 
-    toDoArray[index].completed = e.target.checked;
+    toDoArray[completeIndex].completed = e.target.checked;
 
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
 
 //Add A Task
@@ -161,21 +139,15 @@ function buttonAdd() {
 
 //Edit a task
 function editTask() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     const editButton = e.target.closest(".edit-task");
 
     if (!editButton) {
       return;
     }
 
-    const taskId = Number(editButton.dataset.id);
-    const index = toDoArray.findIndex((todo) => {
-      return todo.id === taskId;
-    });
-    if (index === -1) {
-      return;
-    }
-    const newTextEdit = prompt("Edit task:", toDoArray[index].text);
+    const toDoArrayIndex = editButton.dataset.index;
+    const newTextEdit = prompt("Edit task:", toDoArray[toDoArrayIndex].text);
 
     //Check for only valid saved texts
     if (!newTextEdit || newTextEdit.trim() === "") {
@@ -183,17 +155,14 @@ function editTask() {
     }
 
     //Update the new task
-    toDoArray[index].text = newTextEdit.trim();
+    toDoArray[toDoArrayIndex].text = newTextEdit.trim();
 
     //Save to local storage for persistance
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
 
     //Re-render the new task list
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
 
 editTask();

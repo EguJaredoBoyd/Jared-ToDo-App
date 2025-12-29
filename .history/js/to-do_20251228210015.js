@@ -2,7 +2,6 @@
 let toDoInput = document.querySelector("#to-do");
 let addTask = document.getElementById("add-task");
 let showTask = document.querySelector("#task-show");
-const todoHistoryInput = document.getElementById("todo-history-input");
 
 //Store my to-dos (if there is any) inside a variable
 let storedToDoArray = JSON.parse(localStorage.getItem("addTaskToArray"));
@@ -11,36 +10,28 @@ let storedToDoArray = JSON.parse(localStorage.getItem("addTaskToArray"));
 let toDoArray = storedToDoArray || [];
 
 //Function to render tasks
-function renderTasks(list = toDoArray) {
+function renderTasks() {
   //Clear the previous value and allow a dynamic rebuild
   showTask.innerHTML = "";
-  todoHistoryInput.innerHTML = "";
 
-  for (let i = 0; i < list.length; i++) {
-    const todo = list[i];
-    let html = `
+  for (let i = 0; i < toDoArray.length; i++) {
+    showTask.innerHTML += `
       <div class="ol__list">
-        <li class="${todo.completed ? "done" : ""}">
-          <h4>${todo.text}</h4>
-          <h6>${todo.date}</h6>
+        <li class="${toDoArray[i].completed ? "done" : ""}">
+          <h4>${toDoArray[i].text}</h4>
+          <h6>${toDoArray[i].date}</h6>
         </li>
         <button>
-          <input type="checkbox" name="checkbox" class="completed-task" data-id="${
-            todo.id
-          }" ${todo.completed ? "checked" : ""}/>
+          <input type="checkbox" name="checkbox" class="completed-task" data-index="${i}" ${
+      toDoArray[i].completed ? "checked" : ""
+    }/>
         </button>
-        <button class="edit-task" data-id=  "${
-          todo.id
-        }"><i class="ri-edit-line"></i></button>
-        <button class="delete-task" data-id="${
-          todo.id
-        }"><i class="ri-delete-bin-line"></i></button>
+        <button class="edit-task" data-index=  "${i}"><i class="ri-edit-line"></i></button>
+        <button class="delete-task" data-index="${i}"><i class="ri-delete-bin-line"></i></button>
       </div>
       `;
 
-    //Render to the main page
-    showTask.innerHTML += html;
-    todoHistoryInput.innerHTML += html;
+    console.log(`${toDoArray[i].date}`);
   }
 }
 
@@ -71,7 +62,6 @@ function logArray() {
 
   //Pushing or adding new values to the array!
   toDoArray.push({
-    id: Date.now(),
     text: newTask,
     completed: false,
     date: new Date().toLocaleDateString(),
@@ -86,7 +76,7 @@ function logArray() {
 
 //Function to delete an input task
 function deleteTaskArray() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     //Target the delete button
     const deleteButton = e.target.closest(".delete-task");
 
@@ -96,34 +86,16 @@ function deleteTaskArray() {
     }
 
     //DELETE TODO
-    const taskId = Number(deleteButton.dataset.id);
-    const index = toDoArray.findIndex((todo) => {
-      return todo.id === taskId;
-    });
-    if (index === -1) {
-      return;
-    }
-
-    //Ask User if they really want to delete
-    const confirmDelete = confirm("Are you sure you want to delete this task?");
-
-    //Delete if the user agrees
-    if (!confirmDelete) {
-      return;
-    }
-
-    //Delete task finally
+    const index = Number(deleteButton.dataset.index);
     toDoArray.splice(index, 1);
 
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
+
 function completeTask() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     //Target the checkbox button
     const completedButton = e.target.classList.contains("completed-task");
 
@@ -133,67 +105,48 @@ function completeTask() {
     }
 
     //CHECKMARK COMPLETION
-    const taskId = Number(e.target.dataset.id);
-    const index = toDoArray.findIndex((todo) => {
-      return todo.id === taskId;
-    });
-    if (index === -1) {
-      return;
-    }
+    const completeIndex = e.target.dataset.index;
 
-    toDoArray[index].completed = e.target.checked;
+    toDoArray[completeIndex].completed = e.target.checked;
 
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
 
 //Add A Task
 function buttonAdd() {
   addTask.addEventListener("click", () => {
-    alert("Your task will be saved!");
     logArray();
   });
 }
 
 //Edit a task
 function editTask() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     const editButton = e.target.closest(".edit-task");
 
     if (!editButton) {
       return;
     }
 
-    const taskId = Number(editButton.dataset.id);
-    const index = toDoArray.findIndex((todo) => {
-      return todo.id === taskId;
-    });
-    if (index === -1) {
-      return;
-    }
-    const newTextEdit = prompt("Edit task:", toDoArray[index].text);
+    const toDoArrayIndex = editButton.dataset.index;
+    const newText = prompt("Edit task:", toDoArray[toDoArrayIndex].text);
 
     //Check for only valid saved texts
-    if (!newTextEdit || newTextEdit.trim() === "") {
+    if (!newText || newText.trim() === "") {
       return;
     }
 
     //Update the new task
-    toDoArray[index].text = newTextEdit.trim();
+    toDoArray[toDoArrayIndex].text = newText.trim();
 
     //Save to local storage for persistance
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
 
     //Re-render the new task list
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
 
 editTask();
@@ -202,7 +155,6 @@ editTask();
 toDoInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
-    alert("Your task will be saved!");
     logArray();
   }
 });
@@ -216,38 +168,16 @@ completeTask();
 //Target necessary buttons and inputs
 const searchTodo = document.getElementById("search-todo");
 const searchButton = document.getElementById("search-button");
-const cancelSearchButton = document.getElementById("cancel-search-button");
 
-//Create a global array to use filtered todos
-let filteredTodos = toDoArray;
+//Read the search value
+console.log(searchTodo);
 
-//Search todo by typing
-function runTodoSearch() {
-  //Make it all lower case
-  const searchValue = searchTodo.value.toLowerCase().trim();
+//Make it all lower case
 
-  //Filter the the todos
-  filteredTodos = toDoArray.filter((todo) => {
-    return todo.text.toLowerCase().includes(searchValue);
-  });
+//Loop through all todos
 
-  renderTasks(filteredTodos);
-  console.log(filteredTodos);
-}
+//Keep only the matching todos
 
-//Check with the search button
-searchTodo.addEventListener("input", () => {
-  runTodoSearch();
-});
+//Clear the User Interface
 
-//Trigger search by clicking the search button
-searchButton.addEventListener("click", () => {
-  runTodoSearch();
-});
-
-//Use cancel button to clear search
-cancelSearchButton.addEventListener("click", () => {
-  searchTodo.value = "";
-  filteredTodos = toDoArray;
-  renderTasks(filteredTodos);
-});
+//Display the matching todos

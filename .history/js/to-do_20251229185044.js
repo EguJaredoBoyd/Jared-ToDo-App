@@ -86,7 +86,7 @@ function logArray() {
 
 //Function to delete an input task
 function deleteTaskArray() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     //Target the delete button
     const deleteButton = e.target.closest(".delete-task");
 
@@ -117,13 +117,11 @@ function deleteTaskArray() {
 
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
+
 function completeTask() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     //Target the checkbox button
     const completedButton = e.target.classList.contains("completed-task");
 
@@ -145,10 +143,7 @@ function completeTask() {
 
     localStorage.setItem("addTaskToArray", JSON.stringify(toDoArray));
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
 
 //Add A Task
@@ -161,7 +156,7 @@ function buttonAdd() {
 
 //Edit a task
 function editTask() {
-  function handler(e) {
+  showTask.addEventListener("click", (e) => {
     const editButton = e.target.closest(".edit-task");
 
     if (!editButton) {
@@ -190,10 +185,7 @@ function editTask() {
 
     //Re-render the new task list
     renderTasks();
-  }
-
-  showTask.addEventListener("click", handler);
-  todoHistoryInput.addEventListener("click", handler);
+  });
 }
 
 editTask();
